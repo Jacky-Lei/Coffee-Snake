@@ -3,20 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>SnakeMaster!</title>
-    <link rel="stylesheet" type="text/css" href="../css/snake.css"
+    <!-- <link rel="stylesheet" type="text/css" href="../css/snake.css" -->
   </head>
 
   <body>
     <h1>SnakeMaster</h1>
-    <figure class="snakeGame"></figure>
+    <figure id="game"></figure>
 
     <script src="../js/jquery-1.9.1.js"></script>
-    <script src="../js/snake.js"></script>
-    <script src="../js/snake-view.js"></script>
+    <script src="../js/test.js"></script>
+    <!-- <script src="../js/snake-view.js"></script> -->
 
     <script>
       $(function () {
-        new SG.View($(".snakeGame"));
+        new SG.Board(10, $('#game'));
+        // document.getElementById("game").textContent = sampleGrid;
       });
     </script>
 

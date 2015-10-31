@@ -41,14 +41,14 @@
     // simple text based rendering
     this.$el.html(this.board.render());
 
-    this.updateClasses(this.board.snake.segments, "snake");
+    // this.updateClasses(this.board.snake.segments, "snake");
     // this.updateClasses([this.board.apple.position], "apple");
   };
 
   View.prototype.updateClasses = function(coords, className) {
     this.$li.filter("." + className).removeClass();
 
-    coords.forEach(function(coord){debugger
+    coords.forEach(function(coord){
       var flatCoord = (coord.i * this.board.dim) + coord.j;
 
       // returns the li at that index
@@ -75,9 +75,11 @@
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
       this.render();
-    } else {
-      alert("You lose!");
-      window.clearInterval(this.intervalId);
     }
+
+    // else {
+    //   alert("You lose!");
+    //   window.clearInterval(this.intervalId);
+    // }
   };
 })();
