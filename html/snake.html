@@ -9,14 +9,24 @@
   <body>
     <h1>SnakeMaster</h1>
     <figure id="game"></figure>
+    <div id="score"></div>
+    <div id="enter-play"> Press Enter to Play <div>
 
     <script src="../js/jquery-1.9.1.js"></script>
     <script src="../js/test.js"></script>
     <!-- <script src="../js/snake-view.js"></script> -->
 
     <script>
+      // $document = $document();
+      // $document.on(keyPress, function) {
+      //
+      // };
+      // $(window).on("keydown", handleKeyEvent)
+
+
       $(function () {
-        new SG.Board(10, $('#game'));
+        new SG.Game($('#game'));
+        // new SG.Board(10, $('#game'));
         // document.getElementById("game").textContent = sampleGrid;
       });
     </script>
