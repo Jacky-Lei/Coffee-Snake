@@ -79,7 +79,6 @@
     this.segments.push([this.head()[0] + this.direction[0], this.head()[1] + this.direction[1]]);
     if (!this.validPosition()){
       console.log("game over!");
-      $(".game-over").addClass("game-over-visible");
 
 
       clearInterval(this.board.defaultInterval);
@@ -108,7 +107,7 @@
 
     if (this.eatApple(this.board.apple)){
       this.board.score += (100 * this.multiplier);
-      $(".score").text(this.board.score);
+      $("#score").text(this.board.score);
       this.board.apple.replace(this.board.dimensions, this);
     }
 
@@ -304,7 +303,17 @@ Board.prototype.blankGrid = function (dimensions) {
 
       if (i === this.snake.segments.length - 1) {
         grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snakeHead" + directionClass + "'></div>";
-      }  else {
+      } else if
+
+      ( (i === 0) && (this.snake.segments[i][0] == this.snake.turnTracker[0][0]) && (this.snake.segments[i][1] == this.snake.turnTracker[0][1]) ){
+      grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snakeTail" + this.snake.directionTracker[0] + "'></div>";
+      this.snake.tailDirection = "<div class='snakeTail" + this.snake.directionTracker[0] + "'></div>";
+      this.snake.turnTracker.shift();
+      this.snake.directionTracker.shift();
+
+    } else if (i === 0 ) {
+    grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = this.snake.tailDirection;
+    } else {
     grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snake'></div>";
   }
   }

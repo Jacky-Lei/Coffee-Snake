@@ -5,18 +5,6 @@
 
   var View = SG.View = function ($el) {
     this.$el = $el;
-
-    this.board = new SG.Board(20);
-    this.setupGrid();
-
-    this.intervalId = window.setInterval(
-      this.step.bind(this),
-      View.STEP_MILLIS
-    );
-
-    // bind because handleKeyEvent is a callback and 'this' needs to refer
-    // to the view instance
-
     $(window).on("keydown", this.handleKeyEvent.bind(this));
   };
 
@@ -30,6 +18,18 @@
   View.STEP_MILLIS = 100;
 
   View.prototype.handleKeyEvent = function (event) {
+    if (event.keyCode === 13 && typeof(this.board) === "undefined") {
+      this.board = new SG.Board(15, this.$el);
+      var $document = $(document);
+      $("#enter-play").remove();
+
+
+      this.setupGrid();
+      this.intervalId = window.setInterval(
+        this.step.bind(this),
+        View.STEP_MILLIS
+      );
+    }
     if (View.KEYS[event.keyCode]) {
       this.board.snake.turn(View.KEYS[event.keyCode]);
     } else {
@@ -41,19 +41,17 @@
     // simple text based rendering
     this.$el.html(this.board.render());
 
-    // this.updateClasses(this.board.snake.segments, "snake");
+    this.updateClasses(this.board.snake.segments, "snake");
     // this.updateClasses([this.board.apple.position], "apple");
   };
 
   View.prototype.updateClasses = function(coords, className) {
     this.$li.filter("." + className).removeClass();
 
-    coords.forEach(function(coord){
-      var flatCoord = (coord.i * this.board.dim) + coord.j;
-
-      // returns the li at that index
-      this.$li.eq(flatCoord).addClass(className);
-    }.bind(this));
+    // coords.forEach(function(coord){
+    //   var flatCoord = (coord.i * this.board.dim) + coord.j;
+    //   this.$li.eq(flatCoord).addClass(className);
+    // }.bind(this));
   };
 
   View.prototype.setupGrid = function () {
@@ -75,11 +73,9 @@
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
       this.render();
+    } else {
+      alert("You lose!");
+      window.clearInterval(this.intervalId);
     }
-
-    // else {
-    //   alert("You lose!");
-    //   window.clearInterval(this.intervalId);
-    // }
   };
 })();
