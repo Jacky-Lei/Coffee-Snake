@@ -60,14 +60,13 @@
 
     var snakePos = Math.floor(this.board.dimensions/2);
     this.segments = [[snakePos, snakePos]];
+
     this.symbol = "s";
     this.growTurns = 0;
     this.powerTurns = 0;
     this.multiplier = 1;
     this.direction = [-1, 0];
     this.poweredUp = false;
-    this.turnTracker = [];
-    this.directionTracker = [];
   }
 
   Snake.prototype.head = function () {
@@ -75,20 +74,9 @@
   }
 
   Snake.prototype.move = function () {
-
     this.segments.push([this.head()[0] + this.direction[0], this.head()[1] + this.direction[1]]);
     if (!this.validPosition()){
       console.log("game over!");
-      $(".game-over").addClass("game-over-visible");
-
-
-      clearInterval(this.board.defaultInterval);
-
-
-
-
-
-
     } else if (this.head()[0] < 0 ){
       this.segments.push([this.board.dimensions - 1, this.head()[1]]);
       this.segments.shift();
@@ -98,9 +86,6 @@
     } else if (this.head()[1] < 0 ){
       this.segments.push([this.head()[0], this.board.dimensions - 1]);
       this.segments.shift();
-    } else if ((this.head()[1] > this.board.dimensions - 2 ) && (this.segments.length > 2)){
-      this.segments.push([this.head()[0], 0]);
-      this.segments.shift();
     } else if (this.head()[1] > this.board.dimensions - 1 ){
       this.segments.push([this.head()[0], 0]);
       this.segments.shift();
@@ -108,7 +93,7 @@
 
     if (this.eatApple(this.board.apple)){
       this.board.score += (100 * this.multiplier);
-      $(".score").text(this.board.score);
+      $("#score").text(this.board.score);
       this.board.apple.replace(this.board.dimensions, this);
     }
 
@@ -133,21 +118,10 @@
     if (this.powerTurns > 0) {
       this.multiplier = 2;
       this.powerTurns -= 1;
-      if (typeof (this.board.powerInterval) === "undefined" || (this.board.powerInterval < this.board.defaultInterval) ) {
-      clearInterval(this.board.defaultInterval);
-      this.board.powerInterval = setInterval( function () {
-        this.board.moveSnake()}.bind(this), 100)
-      }
-      // this.board.moveSnake(100);
+      this.board.moveSnake(100);
     } else {
       this.multiplier = 1;
-
-      if ( (this.board.powerInterval) && (this.board.defaultInterval < this.board.powerInterval) ) {
-
-      clearInterval(this.board.powerInterval);
-      this.board.defaultInterval = setInterval( function () {
-        this.board.moveSnake()}.bind(this), 300)
-      }
+      this.board.moveSnake(300);
     }
 
   };
@@ -182,7 +156,6 @@
 
   Snake.prototype.turn = function (direction) {
     this.direction = direction
-    this.turnTracker.push(this.head());
   }
 
   Snake.prototype.validPosition = function () {
@@ -222,24 +195,15 @@
 
     $(window).on("keydown", this.handleKeyEvent.bind(this));
 
-    this.defaultInterval = setInterval( function () {
-      this.moveSnake()}.bind(this), this.speed);
+    this.moveSnake(this.speed)
   };
 
-  Board.prototype.moveSnake = function () {
-    // debugger
-    // clearInterval(window.intervalID);
-    //
-    // window.intervalID = setInterval(function () {
-
+  Board.prototype.moveSnake = function (speed) {
+    clearInterval(window.intervalID);
+    window.intervalID = setInterval(function () {
       this.snake.move();
-      if (this.snake.validPosition()) {
-        this.render();
-      }
-
-
-    // }.bind(this), speed)
-
+      this.render();
+    }.bind(this), speed)
   }
 
 Board.prototype.blankGrid = function (dimensions) {
@@ -249,8 +213,7 @@ Board.prototype.blankGrid = function (dimensions) {
     row = [];
     var j = 0;
     while (j < dimensions) {
-        // row.push(".");
-      row.push("<div class='cell'></div>");
+      row.push(".");
       j++;
     }
     grid.push(row);
@@ -260,58 +223,33 @@ Board.prototype.blankGrid = function (dimensions) {
 }
 
   KEYS = {
-    38: [[-1, 0], "N"],
-    39: [[0, 1], "E"],
-    40: [[1, 0], "S"],
-    37: [[0, -1], "W"],
+    38: [-1, 0],
+    39: [0, 1],
+    40: [1, 0],
+    37: [0, -1]
   };
 
   Board.prototype.handleKeyEvent = function (event) {
     if (KEYS[event.keyCode]) {
-          this.snake.turn(KEYS[event.keyCode][0]);
-          this.snake.directionTracker.push(KEYS[event.keyCode][1]);
+          this.snake.turn(KEYS[event.keyCode]);
     }
   };
 
   Board.prototype.render = function () {
     var grid = this.blankGrid(this.dimensions);
-    // grid[this.apple.dimensions[0][0]][this.apple.dimensions[0][1]] = "A";
-    grid[this.apple.dimensions[0][0]][this.apple.dimensions[0][1]] = "<div class='apple'><div class='appleImage'></div></div>";
+
+    grid[this.apple.dimensions[0][0]][this.apple.dimensions[0][1]] = "A";
     if (!this.powerUpAppleEaten){
-    grid[this.powerUpApple.dimensions[0][0]][this.powerUpApple.dimensions[0][1]] = "<div class='coffee'>&#9749</div>";}
+    grid[this.powerUpApple.dimensions[0][0]][this.powerUpApple.dimensions[0][1]] = "P";}
 
-    var directionClass = "";
-    if (String(this.snake.direction) === String([-1, 0]) ){
-      var directionClass = "N";
-    } else if (String(this.snake.direction)=== String([0, 1]) ){
-      var directionClass = "E";
-    } else if (String(this.snake.direction) === String([1, 0]) ){
-      var directionClass = "S";
-    } else if (String(this.snake.direction) === String([0, -1]) ){
-      var directionClass = "W";
-    }
-
-    for (var i = 0; i < this.snake.segments.length; i++){
-      if (this.snake.segments[i][0] < 0) {
-        this.snake.segments[i][0] = this.dimensions - 1;
-      } else if (this.snake.segments[i][0] > (this.dimensions -1 )){
-        this.snake.segments[i][0] = 0;
+    this.snake.segments.forEach(function (segment){
+      if (segment[0] < 0) {
+        segment[0] = this.dimensions - 1;
+      } else if (segment [0] > (this.dimensions -1 )){
+        segment[0] = 0;
       }
-
-
-
-
-
-      if (i === this.snake.segments.length - 1) {
-        grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snakeHead" + directionClass + "'></div>";
-      }  else {
-    grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snake'></div>";
-  }
-  }
-
-
-
-
+      grid[segment[0]][segment[1]] = "S";
+    }.bind(this))
 
     var joinedGrid = grid.map( function (row) {
       return row.join("");

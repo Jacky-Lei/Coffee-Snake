@@ -1,51 +1,116 @@
-html, body, figure, figcaption, ul, li, h1 {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  text-align: inherit;
-  font-family: consolas;
-}
-
-ul {
-  list-style: none;
-}
-
-body {
-  font-family: consolas;
-  text-align: center;
-  font-weight: bold;
-}
-
-h1 {
-  font-size: 60px;
-  margin: 30px;
-}
-
 figure {
-  display: inline-block;
-  border: 10px solid black;
+  height: 450px;
+  width: 450px;
+
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
 }
 
-ul {
+pre {
+  height: 450px;
+  padding: 0px;
+  margin: 0px;
 }
 
-ul:after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
-li {
+.cell {
   float: left;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  margin: 0px;
+  border: solid rgba(0, 0, 0, 0.22);
+  background-color: white;
+
 }
+
 
 .apple {
-  background: red;
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+  content: url("http://img3.wikia.nocookie.net/__cb20120817164648/adventuretimewithfinnandjake/images/7/7d/Apple.png");
+  background-color: white;
+
+}
+
+.coffee {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+  content: url("http://www.clker.com/cliparts/d/4/d/9/1237562201214390563pitr_Coffee_cup_icon.svg.hi.png");
+
+}
+
+.snakeHeadN {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+
+  transform: rotate(90deg);
+  content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
+}
+
+.snakeHeadW {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+
+
+  content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
+}
+
+.snakeHeadS {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+
+  transform: rotate(270deg);
+  content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
+}
+
+.snakeHeadE {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+
+  transform: scaleX(-1);
+  content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
 }
 
 .snake {
-  background: green;
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+
+  content: url("http://freedesignfile.com/upload/2012/12/snake_skin_05.jpg");
+}
+
+.enter-play {
+
+}
+
+.score {
+  
+}
+
+.game-over {
+  color: white;
+}
+
+.game-over-visible {
+  color: blue;
+  font-size: 60px;
 }
