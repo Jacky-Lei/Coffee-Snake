@@ -1,8 +1,41 @@
-figure {
+body {
+  background-image: url("http://7-themes.com/data_images/out/10/6801306-lovely-coffee-shop-wallpaper.jpg");
+  font-family: "Arial";
+  color: white;
+}
+
+.title-name {
+  text-align: center;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+  font-size: 70px;
+  background-color: #965C31;
+  border-radius: 20px;
+  font-family: "Baskerville";
+  padding: 5px;
+}
+
+.instructions {
+  text-align: center;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: 850px;
+  font-size: 23px;
+  background-color: #965C31;
+  border-radius: 20px;
+  font-family: "Baskerville";
+  padding: 5px;
+
+}
+
+#game {
   height: 450px;
   width: 450px;
 
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   margin: auto;
 }
 
@@ -17,7 +50,7 @@ pre {
   width: 24px;
   height: 24px;
   margin: 0px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   background-color: white;
 
 }
@@ -27,8 +60,8 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
-  margin: auto;
+  border: solid rgba(97, 191, 35, 1);
+  margin: 0px;
   content: url("http://img3.wikia.nocookie.net/__cb20120817164648/adventuretimewithfinnandjake/images/7/7d/Apple.png");
   background-color: white;
 
@@ -38,8 +71,9 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   margin: auto;
+  background-color: white;
   content: url("http://www.clker.com/cliparts/d/4/d/9/1237562201214390563pitr_Coffee_cup_icon.svg.hi.png");
 
 }
@@ -48,7 +82,7 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   margin: auto;
 
   transform: rotate(90deg);
@@ -59,7 +93,7 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   margin: auto;
 
 
@@ -70,7 +104,7 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   margin: auto;
 
   transform: rotate(270deg);
@@ -81,7 +115,7 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgba(97, 191, 35, 1);
   margin: auto;
 
   transform: scaleX(-1);
@@ -92,25 +126,88 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgb(33, 138, 19);
   margin: auto;
 
   content: url("http://freedesignfile.com/upload/2012/12/snake_skin_05.jpg");
 }
 
+.caffeinatedSnake {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border: solid rgba(0, 0, 0, 0.22);
+  margin: auto;
+
+  content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQp3YaWxmxU9epme4cPGoFrtsG_Yu9yMCOdDPZlZmnC2EGSFUxB");
+}
+
 .enter-play {
+  margin: auto;
+  width: 400px;
+  text-align: center;
+  font-style: italic;
+  font-family: "Impact";
+  font-size: 45px;
+  color: white;
+  text-shadow: 3px 3px green;
+
+
+}
+
+
+
+.game-over {
+  display: none;
+}
+
+.game-over-visible {
+  display: block;
+  margin: auto;
+  width: 800px;
+  text-align: center;
+  font-style: italic;
+  font-family: "Impact";
+  font-size: 45px;
+  color: white;
+  text-shadow: 4px 4px green;
+}
+
+.score-container {
+  display: none;
+
+  text-align: center;
+  margin: auto;
+  width: 450px;
+  color: white;
+  font-family: "Impact";
+  text-shadow: 7px 7px green;
+  font-size: 60px;
 
 }
 
 .score {
-  
-}
-
-.game-over {
   color: white;
+
+  text-align: center;
+
 }
 
-.game-over-visible {
-  color: blue;
-  font-size: 60px;
+.score-number {
+
+  display: inline-block;
+
+
+}
+
+.score-visible {
+display: inline;
+
+text-align: center;
+margin: auto;
+width: 450px;
+color: white;
+font-family: "Impact";
+text-shadow: 7px 7px brown;
+font-size: 60px;
 }

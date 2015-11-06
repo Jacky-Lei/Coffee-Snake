@@ -13,13 +13,29 @@
     if (event.keyCode === 13 && typeof(this.board.dimensions) === "undefined") {
       this.board = new SG.Board(15, this.$el);
       var $document = $(document);
-      $("#enter-play").remove();
+      $(".score-container").addClass("score-visible");
+        // $(".score").addClass("score-visible");
+      $(".enter-play").remove();
+    }
+
+    if (event.keyCode === 13 && !(this.board.snake.validPosition())) {
+
+      $(".score-number").text(0);
+      this.board = new SG.Board(15, this.$el);
+      $(".game-over-visible").removeClass("game-over-visible");
+
+
     }
   }
 
   var Apple = SG.Apple = function (dimensions, snake) {
     this.replace(dimensions, snake);
   };
+
+
+
+
+
 
   Apple.prototype.replace = function (dimensions, snake) {
     this.symbol = "A";
@@ -74,11 +90,34 @@
     return this.segments[this.segments.length-1];
   }
 
+//   Snake.prototype.scoreCommaSeparateNumber = function (val){
+//   while (/(\d+)(\d{3})/.test(val.toString())){
+//     val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+//   }
+//   return val;
+// }
+
+Snake.prototype.scoreCommaSeparateNumber = function (val){
+var digits = String(val).split("");
+var result = [];
+var commaIdx = ((digits.length % 3) - 1);
+for ( var i = 0; i < digits.length; i++) {
+  if ((i === commaIdx) && (i !== digits.length-1)) {
+  result.push(digits[i] + ",");
+    commaIdx += 3;
+} else {
+  result.push(digits[i]);
+}
+
+}
+return result.join("");
+}
+
   Snake.prototype.move = function () {
 
     this.segments.push([this.head()[0] + this.direction[0], this.head()[1] + this.direction[1]]);
     if (!this.validPosition()){
-      console.log("game over!");
+      console.log("game over! Hit enter to play again!");
       $(".game-over").addClass("game-over-visible");
 
 
@@ -98,17 +137,26 @@
     } else if (this.head()[1] < 0 ){
       this.segments.push([this.head()[0], this.board.dimensions - 1]);
       this.segments.shift();
-    } else if ((this.head()[1] > this.board.dimensions - 2 ) && (this.segments.length > 2)){
+    }
+    // else if ((this.head()[1] > this.board.dimensions - 2 ) && (this.segments.length > 2)){
+    //   this.segments.push([this.head()[0], 0]);
+    //   this.segments.shift();
+    // }
+     else if (this.head()[1] > this.board.dimensions - 1 ){
       this.segments.push([this.head()[0], 0]);
-      this.segments.shift();
-    } else if (this.head()[1] > this.board.dimensions - 1 ){
-      this.segments.push([this.head()[0], 0]);
+
+      for(var i = 0; i < this.segments.length; i++){
+        if( this.segments[i][1] > this.board.dimensions - 1){
+          this.segments[i][1] = 0;
+        }
+      }
+
       this.segments.shift();
     }
 
     if (this.eatApple(this.board.apple)){
       this.board.score += (100 * this.multiplier);
-      $(".score").text(this.board.score);
+      $(".score-number").text(this.scoreCommaSeparateNumber(this.board.score));
       this.board.apple.replace(this.board.dimensions, this);
     }
 
@@ -210,8 +258,7 @@
 
   var Board = SG.Board = function (dimensions, $el) {
     this.score = 0;
-    var $score = $("#score");
-    $score.text(this.score);
+
     this.dimensions = dimensions;
     this.snake = new Snake(this);
     this.apple = new Apple(dimensions, this.snake);
@@ -267,7 +314,10 @@ Board.prototype.blankGrid = function (dimensions) {
   };
 
   Board.prototype.handleKeyEvent = function (event) {
-    if (KEYS[event.keyCode]) {
+    // ignores input that forces snake to run backwards
+    if ( ( (KEYS[event.keyCode]) && (KEYS[event.keyCode][0][0] !== this.snake.direction[0] + 2 && KEYS[event.keyCode][0][0] !== this.snake.direction[0] - 2) ) &&
+        ( (KEYS[event.keyCode]) && (KEYS[event.keyCode][0][1] !== this.snake.direction[1] + 2 && KEYS[event.keyCode][0][1] !== this.snake.direction[1] - 2) ) )
+     {
           this.snake.turn(KEYS[event.keyCode][0]);
           this.snake.directionTracker.push(KEYS[event.keyCode][1]);
     }
@@ -275,7 +325,7 @@ Board.prototype.blankGrid = function (dimensions) {
 
   Board.prototype.render = function () {
     var grid = this.blankGrid(this.dimensions);
-    // grid[this.apple.dimensions[0][0]][this.apple.dimensions[0][1]] = "A";
+
     grid[this.apple.dimensions[0][0]][this.apple.dimensions[0][1]] = "<div class='apple'><div class='appleImage'></div></div>";
     if (!this.powerUpAppleEaten){
     grid[this.powerUpApple.dimensions[0][0]][this.powerUpApple.dimensions[0][1]] = "<div class='coffee'>&#9749</div>";}
@@ -298,20 +348,14 @@ Board.prototype.blankGrid = function (dimensions) {
         this.snake.segments[i][0] = 0;
       }
 
-
-
-
-
       if (i === this.snake.segments.length - 1) {
         grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snakeHead" + directionClass + "'></div>";
-      }  else {
+      }  else if (this.snake.powerTurns > 0) {
+        grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='caffeinatedSnake'></div>";
+      } else {
     grid[this.snake.segments[i][0]][this.snake.segments[i][1]] = "<div class='snake'></div>";
   }
   }
-
-
-
-
 
     var joinedGrid = grid.map( function (row) {
       return row.join("");
