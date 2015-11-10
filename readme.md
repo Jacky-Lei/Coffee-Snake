@@ -2,7 +2,7 @@
 
 [Game Link][game]
 
-[game]: http://jacky-lei.github.io/SnakeMaster/
+[game]: http://jacky-lei.github.io/Coffee-Snake/
 
 ## Description
 
