@@ -1,11 +1,11 @@
 # Coffee Snake
 
+![Screenshot]
+(http://res.cloudinary.com/akantoword/image/upload/v1447180304/Screen_Shot_2015-11-10_at_10.30.47_AM_xv43yr.png)
+
 [Game Link][game]
 
 [game]: http://jacky-lei.github.io/Coffee-Snake/
-
-![Screenshot]
-(http://res.cloudinary.com/akantoword/image/upload/v1447180173/Screen_Shot_2015-11-10_at_10.28.35_AM_uii9hh.png)
 
 ## Description
 
