@@ -2,31 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SnakeMaster!</title>
-    <link rel="stylesheet" type="text/css" href="css/snake.css"
+    <title>Coffee Snake</title>
+    <link rel="stylesheet" type="text/css" href="css/coffee_snake.css"
   </head>
 
   <body>
     <h1 class="title-name">Coffee Snake</h1>
-
-
     <div id="game"></div>
     <div class="enter-play"> Press Enter to Play </div>
     <div class="score-container">
       <div class="score">Score: <div class="score-number"></div></div>
     </div>
     <div class="game-over"> Game Over! Hit Enter to Restart!</div>
-
-
     <div class="instructions">Use the arrows keys to guide your snake
       buddy to eat apples for points. Drinking some coffee will speed
       him up, make him invincible, and double the points for each apple
-      consumed afterwards. Be careful though! Caffeinated mode only lasts
+      consumed afterwards. Be careful though, caffeinated mode only lasts
       for a limited time.
     </div>
-
     <script src="js/jquery-1.9.1.js"></script>
-    <script src="js/test.js"></script>
+    <script src="js/coffee_snake.js"></script>
     <script>
       $(function () {
         new SG.Game($('#game'));

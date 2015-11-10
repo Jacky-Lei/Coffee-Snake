@@ -28,13 +28,11 @@ body {
   border-radius: 20px;
   font-family: "Baskerville";
   padding: 5px;
-
 }
 
 #game {
   height: 450px;
   width: 450px;
-
   border: solid rgba(97, 191, 35, 1);
   margin: auto;
 }
@@ -52,9 +50,7 @@ pre {
   margin: 0px;
   border: solid rgba(97, 191, 35, 1);
   background-color: white;
-
 }
-
 
 .apple {
   float: left;
@@ -64,7 +60,6 @@ pre {
   margin: 0px;
   content: url("http://img3.wikia.nocookie.net/__cb20120817164648/adventuretimewithfinnandjake/images/7/7d/Apple.png");
   background-color: white;
-
 }
 
 .coffee {
@@ -75,7 +70,6 @@ pre {
   margin: auto;
   background-color: white;
   content: url("http://www.clker.com/cliparts/d/4/d/9/1237562201214390563pitr_Coffee_cup_icon.svg.hi.png");
-
 }
 
 .snakeHeadN {
@@ -95,8 +89,6 @@ pre {
   height: 24px;
   border: solid rgba(97, 191, 35, 1);
   margin: auto;
-
-
   content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
 }
 
@@ -106,7 +98,6 @@ pre {
   height: 24px;
   border: solid rgba(97, 191, 35, 1);
   margin: auto;
-
   transform: rotate(270deg);
   content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
 }
@@ -117,7 +108,6 @@ pre {
   height: 24px;
   border: solid rgba(97, 191, 35, 1);
   margin: auto;
-
   transform: scaleX(-1);
   content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTOYqZ5CEireovG-fgRj1KlvU8UdnZlPEyt1JMohAqPp2axrtv65w");
 }
@@ -128,7 +118,6 @@ pre {
   height: 24px;
   border: solid rgb(33, 138, 19);
   margin: auto;
-
   content: url("http://freedesignfile.com/upload/2012/12/snake_skin_05.jpg");
 }
 
@@ -136,9 +125,8 @@ pre {
   float: left;
   width: 24px;
   height: 24px;
-  border: solid rgba(0, 0, 0, 0.22);
+  border: solid rgb(33, 138, 19);
   margin: auto;
-
   content: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQp3YaWxmxU9epme4cPGoFrtsG_Yu9yMCOdDPZlZmnC2EGSFUxB");
 }
 
@@ -151,11 +139,7 @@ pre {
   font-size: 45px;
   color: white;
   text-shadow: 3px 3px green;
-
-
 }
-
-
 
 .game-over {
   display: none;
@@ -175,7 +159,6 @@ pre {
 
 .score-container {
   display: none;
-
   text-align: center;
   margin: auto;
   width: 450px;
@@ -183,31 +166,24 @@ pre {
   font-family: "Impact";
   text-shadow: 7px 7px green;
   font-size: 60px;
-
 }
 
 .score {
   color: white;
-
   text-align: center;
-
 }
 
 .score-number {
-
   display: inline-block;
-
-
 }
 
 .score-visible {
-display: inline;
-
-text-align: center;
-margin: auto;
-width: 450px;
-color: white;
-font-family: "Impact";
-text-shadow: 7px 7px brown;
-font-size: 60px;
+  display: inline;
+  text-align: center;
+  margin: auto;
+  width: 450px;
+  color: white;
+  font-family: "Impact";
+  text-shadow: 7px 7px brown;
+  font-size: 60px;
 }
