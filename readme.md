@@ -7,11 +7,11 @@
 
 [game]: http://jacky-lei.github.io/Coffee-Snake/
 
-## Description
+### Description
 
 Spin-off of arcade classic, with a twist of coffee. Consuming coffee will make your snake indestructible, move faster, and double your points for each apple consumed afterwards.
 
-## Technical Details
+### Technical Details
 
 Javascript, jQuery, HTML, and CSS were used to build this game.
 
