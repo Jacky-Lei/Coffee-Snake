@@ -1,14 +1,17 @@
 # Coffee Snake
 
+![Screenshot]
+(http://res.cloudinary.com/akantoword/image/upload/v1447180304/Screen_Shot_2015-11-10_at_10.30.47_AM_xv43yr.png)
+
 [Game Link][game]
 
-[game]: http://jacky-lei.github.io/SnakeMaster/
+[game]: http://jacky-lei.github.io/Coffee-Snake/
 
-## Description
+### Description
 
 Spin-off of arcade classic, with a twist of coffee. Consuming coffee will make your snake indestructible, move faster, and double your points for each apple consumed afterwards.
 
-## Technical Details
+### Technical Details
 
 Javascript, jQuery, HTML, and CSS were used to build this game.
 

@@ -263,6 +263,7 @@
   };
 
   Board.prototype.handleKeyEvent = function (event) {
+    event.preventDefault()
     // ignores input that forces snake to move backwards to prevent death
     if ( this.snake.enableTurn &&
        ( (KEYS[event.keyCode]) && (KEYS[event.keyCode][0][0] !== this.snake.direction[0] + 2 && KEYS[event.keyCode][0][0] !== this.snake.direction[0] - 2) ) &&
